@@ -9,10 +9,11 @@ def get_center_coordinates(width=450, height=150):
     temp.destroy()
     return (screen_width // 2) - (width // 2), (screen_height // 2) - (height // 2)
 
+# switch two windows
 def switch_to(current_window, next_window_fn):
     # save coordinates of previous window
     x = current_window.winfo_x()
     y = current_window.winfo_y()
 
-    current_window.destroy()
-    next_window_fn(x, y)
+    next_window_fn(current_window, x, y)
+    current_window.withdraw()
