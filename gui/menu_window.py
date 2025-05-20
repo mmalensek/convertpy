@@ -1,8 +1,9 @@
 import tkinter as tk
-from gui.weight_window import create_weight_window
-from logic.tkinter_logic import get_center_coordinates
+from logic.tkinter_logic import get_center_coordinates, switch_to
 
-def open_menu():
+def create_menu_window(x=-1, y=-1):
+    from gui.weight_window import create_weight_window
+
     root = tk.Tk()
     root.title("convertpy ©mmalensek")
 
@@ -11,7 +12,8 @@ def open_menu():
     height = 150
 
     # get x and y coordinates to open the window on center of the screen
-    x, y = get_center_coordinates(width, height)
+    if(x == -1 and y == -1):
+        x, y = get_center_coordinates(width, height)
 
     root.geometry(f"{width}x{height}+{x}+{y}")
 
@@ -25,11 +27,3 @@ def open_menu():
     # new conversion windows / logic
 
     root.mainloop()
-
-def switch_to(current_window, next_window_fn):
-    # save coordinates of previous window
-    x = current_window.winfo_x()
-    y = current_window.winfo_y()
-
-    current_window.destroy()
-    next_window_fn(x, y)

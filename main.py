@@ -1,4 +1,4 @@
-from gui.menu_window import open_menu
+from gui.menu_window import create_menu_window
 
 if __name__ == "__main__":
-    open_menu()
+    create_menu_window()
